@@ -1,0 +1,91 @@
+:root {
+    --main-blue-colour: #4a90e2;
+    --main-salmon-colour: #ff7474;
+    --main-yellow-colour: #ffc600;
+    --main-purple-colour: #8d6c9f;
+    --light-purple-colour: #a389b2;
+    --main-green-colour: #72caaf;
+    --dark-green-colour: #45b794;
+  }
+
+#calculator-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 50px auto;
+    width: 400px;
+    height: 500px;
+    /* border: 3px solid #4a90e2; */
+    background-color: var(--main-blue-colour);
+    border-radius: 20px 20px 5px 5px;
+    /* border-radius: 20px; */
+    padding: 5px;
+}
+
+#display {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: auto;
+    margin-top: 2.5%;
+    width: 90%;
+    height: 20%;
+    border: 3px solid var(--main-salmon-colour);
+    background-color: var(--main-yellow-colour);
+    border-radius: 5px;
+    font: 30px Arial, sans-serif;
+    font-weight: 800;
+    color: var(--main-salmon-colour);
+    padding: 5px;
+}
+
+#panel {
+    box-sizing: border-box;
+    width: 90%;
+    height: 75%;
+    margin: auto;
+    margin-top: 0%;
+    margin-bottom: 2.5%;
+    margin-top: 2.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    padding: 0px;
+}
+
+.button {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(90%/4);
+    height: calc(80%/5);
+    transition: all .07s ease;
+    border: 3px solid var(--main-purple-colour);
+    background-color: var(--main-green-colour);
+    border-radius: 5px;
+    text-align: center;
+    font: 15px Arial, sans-serif;
+    font-weight: 800;
+    color: white;
+}
+
+.button:hover {
+    background-color: var(--dark-green-colour);
+    border-color: var(--light-purple-colour);
+}
+
+.pressed {
+    transform: scale(1.2);
+    border-color: var(--main-green-colour);
+    background-color: var(--main-purple-colour);
+  }
+
+.special {
+    width: calc(90%/3);
+}
