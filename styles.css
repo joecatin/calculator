@@ -32,11 +32,11 @@
     align-items: center;
     margin: auto;
     margin-top: 2.5%;
-    width: 90%;
+    width: 95%;
     height: 20%;
     border: 3px solid var(--main-salmon-colour);
     background-color: var(--main-yellow-colour);
-    border-radius: 5px;
+    border-radius: inherit;
     font: 30px Arial, sans-serif;
     font-weight: 800;
     color: var(--main-salmon-colour);
@@ -45,7 +45,7 @@
 
 #panel {
     box-sizing: border-box;
-    width: 90%;
+    width: 95%;
     height: 75%;
     margin: auto;
     margin-top: 0%;

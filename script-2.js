@@ -4,6 +4,9 @@ const firstCharacterRegex = /^./g;
 const lastCharacterRegex = /.$/g;
 const digitRegex = /\d+/g;
 const divideByZeroRegex = /\/0/g;
+// const wrongOperatorsRegex = /(?<=[\d]|^)[+\-*\/]+/g;
+let wrongOperatorsRegex = /(^[-+x/])|([-+x/]{2,})/g;
+let lastCharacterString = "";
 let firstCharacterString = "";
 let result = "";
 let key;
@@ -18,20 +21,41 @@ const checkTooLong = (text) => {
     return false
 }
 
-const display = (e) => {
-
-    key = findButton(e);
-
-    if (!key) return;
-    key.classList.add("pressed");
-    checkTooLong(displayValue);
-
-    if (displayValue == 0) displayValue = key.textContent;
-    else displayValue = displayValue + key.textContent;
-    document.getElementById("display").textContent = displayValue;
+const isWrongOperators = (text) => {
+    return text.match(wrongOperatorsRegex);
 }
 
-const findButton = (e) => {
+const display = (e) => {
+
+    key = transition(e);
+    if (!key) return;
+    checkTooLong(displayValue);
+
+    if (displayValue == 0) {
+        displayValue = key.textContent;
+        if (isWrongOperators(displayValue)) displayValue = 0;
+    } else {
+        if (! isWrongOperators(displayValue + key.textContent)) {
+            displayValue = displayValue + key.textContent;
+        }        
+    };
+
+    // if (displayValue == 0) {
+    //     displayValue = key.textContent;
+    //     if (isWrongOperators(displayValue)) {
+    //         displayValue = displayValue.replace(lastCharacterRegex, "0");
+    //     };
+    // } else if (isWrongOperators(displayValue)) return;
+    // else displayValue = displayValue + key.textContent;
+
+    // if (isWrongOperators(displayValue)) return;
+    // else document.getElementById("display").textContent = displayValue;
+    document.getElementById("display").textContent = displayValue;
+
+    return true;
+}
+
+const transition = (e) => {
     
     if (e.type == "keydown") {
         if (e.keyCode == "13"){
@@ -44,6 +68,8 @@ const findButton = (e) => {
         key = e.currentTarget;
     }
 
+    if (!key) return;
+    key.classList.add("pressed");
     return key;
 }
 
@@ -52,6 +78,8 @@ const clear = () => {
     operator = "";
     result = "";
     document.getElementById("display").textContent = displayValue;
+
+    return true;
 }
 
 const operate = (formula) => {
@@ -75,6 +103,8 @@ const calculate = () => {
         displayValue = result.toString();
         document.getElementById("display").textContent = result;
     }    
+
+    return true;
 }
 
 const changeSign = () => {
@@ -85,6 +115,8 @@ const changeSign = () => {
         displayValue = "-" + displayValue
     }
     document.getElementById("display").textContent = displayValue;
+
+    return true;
 }
 
 const deleteLast = () => {
@@ -94,32 +126,32 @@ const deleteLast = () => {
         displayValue = displayValue.replace(lastCharacterRegex, "");
     }    
     document.getElementById("display").textContent = displayValue;
+
+    return true;
 }
-
-// transition = (e) => {
-//     const key = document.querySelector(`.button[data-key="${e.keyCode}"]`);
-
-//     if (!key) return;
-//     key.classList.add(("pressed"));
-//     key.target.textContent = key.textContent;
-// }
-
 
 const operationButtons = document.querySelectorAll(".number, .operator"); 
 operationButtons.forEach(button => button.addEventListener("click", display));
 
 const plusminus = document.getElementById("plusminus"); 
-plusminus.addEventListener("click", changeSign);
+plusminus.addEventListener("click", (e) => {
+    transition(e); changeSign(e);
+});
 
 const equalButton = document.getElementById("equal");
-equalButton.addEventListener("click", calculate);
+equalButton.addEventListener("click", (e) => {
+    transition(e); calculate(e);
+});
 
 const clearButton = document.getElementById("clear");
-clearButton.addEventListener("click", clear);
+clearButton.addEventListener("click", (e) => {
+    transition(e); clear(e);
+});
 
 const backButton = document.getElementById("back");
-backButton.addEventListener("click", deleteLast);
-
+backButton.addEventListener("click", (e) => {
+    transition(e); deleteLast(e);
+});
 window.addEventListener("keydown", display);
 
 const removeTransition = (key) => { key.classList.remove(("pressed")); }
