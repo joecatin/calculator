@@ -1,7 +1,9 @@
 :root {
     --main-blue-colour: #4a90e2;
+    --light-blue-colour:#a4c7f0;
     --main-salmon-colour: #ff7474;
     --main-yellow-colour: #ffc600;
+    --light-yellow-colour: #ffe27f;
     --main-purple-colour: #8d6c9f;
     --light-purple-colour: #a389b2;
     --main-green-colour: #72caaf;
@@ -19,7 +21,7 @@
     width: 400px;
     height: 500px;
     /* border: 3px solid #4a90e2; */
-    background-color: var(--main-blue-colour);
+    background-color: var(--light-blue-colour);
     border-radius: 20px 20px 5px 5px;
     /* border-radius: 20px; */
     padding: 5px;
@@ -35,11 +37,12 @@
     width: 95%;
     height: 20%;
     border: 3px solid var(--main-salmon-colour);
-    background-color: var(--main-yellow-colour);
+    background-color: var(--light-yellow-colour);
     border-radius: inherit;
     font: 30px Arial, sans-serif;
     font-weight: 800;
     color: var(--main-salmon-colour);
+    /* color: whitesmoke; */
     padding: 5px;
 }
 
@@ -72,7 +75,8 @@
     text-align: center;
     font: 15px Arial, sans-serif;
     font-weight: 800;
-    color: white;
+    color: whitesmoke;
+    color: var(--main-purple-colour);
 }
 
 .button:hover {
