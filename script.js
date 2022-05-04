@@ -40,16 +40,6 @@ const display = (e) => {
         }        
     };
 
-    // if (displayValue == 0) {
-    //     displayValue = key.textContent;
-    //     if (isWrongOperators(displayValue)) {
-    //         displayValue = displayValue.replace(lastCharacterRegex, "0");
-    //     };
-    // } else if (isWrongOperators(displayValue)) return;
-    // else displayValue = displayValue + key.textContent;
-
-    // if (isWrongOperators(displayValue)) return;
-    // else document.getElementById("display").textContent = displayValue;
     document.getElementById("display").textContent = displayValue;
 
     return true;
@@ -154,14 +144,8 @@ backButton.addEventListener("click", (e) => {
 });
 window.addEventListener("keydown", display);
 
-const removeTransition = (key) => { key.classList.remove(("pressed")); }
+const removeTransition = (key) => { key.classList.remove("pressed"); }
 const buttons = document.querySelectorAll(".button");
 buttons.forEach(button => {
     button.addEventListener("transitionend", function(e){ removeTransition(this) })
 });
-
-
-
-
-// isolate high priority operation
-// -> match digit(s) followed a high priority operator followed by digit(s) or high priority operator.

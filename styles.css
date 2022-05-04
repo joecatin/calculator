@@ -88,7 +88,7 @@
     transform: scale(1.2);
     border-color: var(--main-green-colour);
     background-color: var(--main-purple-colour);
-  }
+}
 
 .special {
     width: calc(90%/3);
